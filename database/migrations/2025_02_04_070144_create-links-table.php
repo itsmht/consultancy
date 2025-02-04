@@ -11,7 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::create('links', function (Blueprint $table) {
+            $table->bigIncrements('link_id');
+            $table->string('title');
+            $table->string('url');
+            $table->string('status');
+            $table->timestamps();
+        });
     }
 
     /**

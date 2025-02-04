@@ -11,7 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::create('portfolio_categories', function (Blueprint $table) {
+            $table->bigIncrements('portfolio_category_id');
+            $table->string('title');
+            $table->string('status');
+            $table->timestamps();
+        });
     }
 
     /**

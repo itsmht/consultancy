@@ -11,7 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::create('services', function (Blueprint $table) {
+            $table->bigIncrements('service_id');
+            $table->string('title');
+            $table->longText('description');
+            $table->string('status');
+            $table->timestamps();
+        });
     }
 
     /**

@@ -11,7 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::create('plans', function (Blueprint $table) {
+            $table->bigIncrements('plan_id');
+            $table->string('title');
+            $table->string('duration');
+            $table->longText('description');
+            $table->string('price');
+            $table->string('status');
+            $table->timestamps();
+        });
     }
 
     /**

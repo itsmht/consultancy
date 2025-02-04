@@ -11,12 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('banners', function (Blueprint $table) {
-            $table->bigIncrements('banner_id');
+        Schema::create('portfolios', function (Blueprint $table) {
+            $table->bigIncrements('portfolio_id');
             $table->string('title');
             $table->string('image_path');
             $table->longText('description');
             $table->string('status');
+            $table->bigInteger("portfolio_category_id")->unsigned();
+            $table->foreign('portfolio_category_id')->references('portfolio_category_id')->on('portfolio_categories');
             $table->timestamps();
         });
     }
