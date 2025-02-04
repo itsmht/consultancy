@@ -9,4 +9,4 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 //Banners
-Route::get('banners', [ApiController::class, 'banners']);
+Route::get('banners', [ApiController::class, 'banners'])->middleware(AuthHeader::class);
