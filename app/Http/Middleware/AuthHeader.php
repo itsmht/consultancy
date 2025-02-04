@@ -20,14 +20,14 @@ class AuthHeader
         $password = $request->header('password');
 
         if (!$username || !$password) {
-            return response()->json(['message' => 'Username and password are required'], 400);
+            return response()->json(['code'=>'400','message'=>'Username and password are required','data'=>null], 400);
         }
 
         // Fetch the user from the database
-        $user = ApiUser::where('username', $username)->first();
+        $user = ApiUser::where('username', $username)->where('password', $password)->first();
 
-        if (!$user || !password_verify($password, $user->password)) {
-            return response()->json(['message' => 'Unauthorized'], 401);
+        if (!$user) {
+            return response()->json(['code'=>'401','message'=>'Wrong Credentials','data'=>null], 401);
         }
 
         // Optionally attach the user to the request for further use
