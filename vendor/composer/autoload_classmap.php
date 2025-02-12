@@ -6,7 +6,22 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Http\\Controllers\\AdminController' => $baseDir . '/app/Http/Controllers/AdminController.php',
+    'App\\Http\\Controllers\\ApiController' => $baseDir . '/app/Http/Controllers/ApiController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
+    'App\\Http\\Middleware\\AuthGuest' => $baseDir . '/app/Http/Middleware/AuthGuest.php',
+    'App\\Http\\Middleware\\AuthHeader' => $baseDir . '/app/Http/Middleware/AuthHeader.php',
+    'App\\Http\\Middleware\\AuthUser' => $baseDir . '/app/Http/Middleware/AuthUser.php',
+    'App\\Http\\Middleware\\PreventBack' => $baseDir . '/app/Http/Middleware/PreventBack.php',
+    'App\\Models\\Admin' => $baseDir . '/app/Models/Admin.php',
+    'App\\Models\\ApiUser' => $baseDir . '/app/Models/ApiUser.php',
+    'App\\Models\\Banner' => $baseDir . '/app/Models/Banner.php',
+    'App\\Models\\ContactForm' => $baseDir . '/app/Models/ContactForm.php',
+    'App\\Models\\Link' => $baseDir . '/app/Models/Link.php',
+    'App\\Models\\Plan' => $baseDir . '/app/Models/Plan.php',
+    'App\\Models\\Portfolio' => $baseDir . '/app/Models/Portfolio.php',
+    'App\\Models\\PortfolioCategory' => $baseDir . '/app/Models/PortfolioCategory.php',
+    'App\\Models\\Service' => $baseDir . '/app/Models/Service.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'Attribute' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
