@@ -6,10 +6,12 @@ use App\Http\Middleware\AuthUser;
 use App\Http\Middleware\PreventBack;
 use App\Http\Controllers\AdminController;
 
-
+Route::get('/', function () {
+    return view('welcome');
+});
 
 //Auth Routes
-Route::get('/', [AdminController::class, 'login'])->name('login');
+Route::get('/login', [AdminController::class, 'login'])->name('login');
 Route::post('/login.submit', [AdminController::class, 'loginSubmit'])->name('login.submit');
 Route::get('/logout', [AdminController::class, 'logout'])->name('logout');
 
