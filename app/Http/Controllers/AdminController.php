@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Admin;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -27,18 +27,10 @@ class AdminController extends Controller
         $user = Admin::where('admin_phone', $req->admin_phone)->where('admin_password',$req->admin_password)->first(); //Authentication
         if($user)
         {
-            if($user->admin_status=="1")//Checking If User Status is Active
+            if($user->status=="1")//Checking If User Status is Active
             {
-                if($user->admin_type=="1")//Checking User Type, Redirecting To Admin Dashboard And Creating Session
-                {
-                    session()->put('logged', $user->admin_phone);
-                    return redirect()->route('adminDashboard');
-                }
-                if($user->admin_type=="2")//Checking User Type, Redirecting To Admin Dashboard And Creating Session
-                {
-                    session()->put('logged', $user->admin_phone);
-                    return redirect()->route('adminDashboard');
-                }
+                session()->put('logged', $user->admin_phone);
+                return redirect()->route('adminDashboard');
             }
             else
             {
