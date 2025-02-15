@@ -25,7 +25,7 @@ Route::group(['middleware' => [AuthGuest::class, AuthUser::class, PreventBack::c
     Route::get('/addProduct', [AdminController::class, 'addProduct'])->name('addProduct');
     Route::get('/banners', [BannerController::class, 'banners'])->name('banners');
     Route::get('getBanners', [BannerController::class, 'getBanners'])->name('getBanners');
-    Route::post('/create-banner', [BannerController::class, 'createBanner']);
+    Route::post('createBanner', [BannerController::class, 'createBanner'])->name('createBanner');
     Route::post('/update-banner/{id}', [BannerController::class, 'updateBanner']);
     Route::delete('/delete-banner/{id}', [BannerController::class, 'deleteBanner']);
 });

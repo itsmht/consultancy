@@ -10,7 +10,8 @@ class BannerController extends Controller
     public function banners()
     {
         $admin = Admin::where('admin_phone',session()->get('logged'))->first();
-        return view('admin.banners')->with('admin', $admin);
+        $banners = Banner::all();
+        return view('admin.banners')->with('admin', $admin)->with('banners', $banners);
     }
 
     public function getBanners()
@@ -21,6 +22,7 @@ class BannerController extends Controller
 
     public function createBanner(Request $req)
     {
+        $admin = Admin::where('admin_phone',session()->get('logged'))->first();
         $req->validate([
             'title' => 'required',
             'description' => 'required',
@@ -31,20 +33,28 @@ class BannerController extends Controller
         try {
             $banner = new Banner();
             $banner->title = $req->title;
+            $title_without_space = str_replace(' ', '-', $req->title);
             $banner->description = $req->description;
             $banner->status = "1";
             
             if ($req->hasFile('image_path')) {
-                $banner->image_path = $req->file('image_path')->store('banners', 'public');
+                $url = url('')."/public/banner_images";
+                $file = $req->image_path;
+                $file_name1 = $url . "/" . $title_without_space. "-".$admin->admin_phone . "-" . time() ."." . $file->getClientOriginalExtension();
+                $file->move(public_path('banner_images'), $file_name1);
+                $banner->image_path = $file_name1;
             }
             if ($req->hasFile('video_path')) {
-                $banner->video_path = $req->file('video_path')->store('videos', 'public');
+                $url = $req->url()."/public/banner_videos";
+                $file = $req->video_path;
+                $file_name2 = $url . "/" . $title_without_space. "-".$admin->admin_phone . "-" . time() ."." . $file->getClientOriginalExtension();
+                $file->move(public_path('banner_videos'), $file_name2);
+                $banner->video_path = $file_name2;
             }
-
             $banner->save();
-            return response()->json(['success' => 'Banner added successfully']);
+            return back()->with('success', 'New Banner Added');
         } catch (Exception $e) {
-            return response()->json(['error' => $e->getMessage()]);
+            return back()->with('error', $e->getMessage());
         }
     }
 

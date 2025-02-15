@@ -1,168 +1,96 @@
 @include('layouts.header')
 @include('layouts.topbar')
 @include('layouts.sidebar')
-
 <div class="dashboard-wrapper">
-    <div class="container-fluid dashboard-content">
-        <h2 class="mb-4">Banner Management</h2>
-
-        <button class="btn btn-primary mb-3" data-toggle="modal" data-target="#addBannerModal">Add Banner</button>
-
-        <table id="bannerTable" class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th>Image</th>
-                    <th>Video</th>
-                    <th>Status</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
-
-        @include('layouts.footer')
-    </div>
-
-    <!-- Add Banner Modal -->
-    <div class="modal fade" id="addBannerModal" tabindex="-1" aria-labelledby="addBannerModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <form id="bannerForm">
-                @csrf
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Add Banner</h5>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <div class="container-fluid  dashboard-content">
+                    
+                    <div class="row">
+                        
+                        <!-- hoverable table -->
+                        <!-- ============================================================== -->
+                        <div class="col-xl-12 col-lg-6 col-md-12 col-sm-12 col-12">
+                            <div class="card">
+                                <h5 class="card-header">Banners</h5> 
+                                <a href="#" class="btn btn-primary ml-auto" data-toggle="modal" data-target="#exampleModal">Add Banner</a>
+                                <div class="card-body">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">ID</th>
+                                                <th scope="col">Title</th>
+                                                <th scope="col">Description</th>
+                                                <th scope="col">Banner Image</th>
+                                                <th scope="col">Banner Video</th>
+                                                <th scope="col">Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach($banners as $banner)
+                                            <tr>
+                                                <th scope="row">{{$banner->banner_id}}</th>
+                                                <td>{{$banner->title}}</td>
+                                                <td>{{$banner->description}}</td>
+                                                <td><img style="width:30px; height:30px;" src="{{$banner->image_path}}" alt="img" ></td>
+                                                <td><img style="width:30px; height:30px;" src="{{$banner->video_path}}" alt="vdo" ></td>
+                                                <td>{{$banner->status}}</td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ============================================================== -->
+                        <!-- end hoverable table -->
+                        <!-- ============================================================== -->
                     </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label>Title</label>
-                            <input type="text" name="title" class="form-control" required>
+                    @include('layouts.footer')
+                    </div>
+        <!-- ============================================================== -->
+        <!-- end wrapper  -->
+        <!-- ============================================================== -->
+    </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Add Category</h5>
+                            <a href="#" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                            </a>
                         </div>
-                        <div class="form-group">
-                            <label>Description</label>
-                            <textarea name="description" class="form-control" required></textarea>
+                        <div class="modal-body">
+                        <form action="{{route('createBanner')}}" method="POST" enctype="multipart/form-data">
+                        {{@csrf_field()}}
+                    <div class="form-group">
+                        <label for="category_name" class="col-form-label">Title</label>
+                        <input id="category_name" name="title" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="category_name" class="col-form-label">Description</label>
+                        <input id="category_name" name="description" type="textbox" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="category_logo" class="col-form-label">Banner Image (Optional)</label>
+                        <div class="custom-file">
+                            <input type="file" name="image_path" class="custom-file-input" id="category_logo" name="category_file">
+                            <label class="custom-file-label" for="category_logo">Choose File</label>
                         </div>
-                        <div class="form-group">
-                            <label>Image</label>
-                            <input type="file" name="image_path" class="form-control">
+                            <small class="form-text text-muted">Accepted formats are JPG,PNG and JPEG</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="category_banner" class="col-form-label">Banner Video (Optional)</label>
+                        <div class="custom-file">
+                            <input type="file" name="video_path" class="custom-file-input" id="category_banner" name="category_file">
+                            <label class="custom-file-label" for="category_banner">Choose File</label>
                         </div>
-                        <div class="form-group">
-                            <label>Video</label>
-                            <input type="file" name="video_path" class="form-control">
-                        </div>
+                            <small class="form-text text-muted">Accepted formats are MP4, MKV</small>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-success">Save</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <a href="#" class="btn btn-secondary" data-dismiss="modal">Close</a>
+                        <button type="submit" class="btn btn-primary ">Save</button>
                     </div>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-@section('scripts')
-<script>
-$(document).ready(function() {
-    let bannerTable = $('#bannerTable').DataTable({
-        processing: true,
-        serverSide: false, // ✅ Set to false unless using Laravel DataTables package
-        ajax: {
-            url: "{{ route('getBanners') }}",
-            type: "GET",
-            dataType: "json",
-            error: function(xhr, status, error) {
-                console.log("AJAX Error:", error);
-            }
-        },
-        columns: [
-            { data: 'title' },
-            { data: 'description' },
-            { 
-                data: 'image_path', 
-                render: function(data) { 
-                    return data ? `<img src="/storage/${data}" width="50">` : 'No Image'; 
-                }
-            },
-            { 
-                data: 'video_path', 
-                render: function(data) { 
-                    return data ? `<a href="/storage/${data}" target="_blank">View</a>` : 'No Video'; 
-                }
-            },
-            { 
-                data: 'status', 
-                render: function(data) { 
-                    return data == 1 ? '<span class="badge badge-success">Active</span>' : '<span class="badge badge-danger">Inactive</span>';
-                }
-            },
-            { 
-                data: 'id', 
-                render: function(id) {
-                    return `
-                        <button class="btn btn-warning btn-sm edit-btn" data-id="${id}">Edit</button>
-                        <button class="btn btn-danger btn-sm delete-btn" data-id="${id}">Delete</button>
-                    `;
-                }
-            }
-        ]
-    });
-
-    // ✅ Add Banner AJAX Request
-    $('#bannerForm').on('submit', function(e) {
-        e.preventDefault();
-        let formData = new FormData(this);
-        formData.append("_token", "{{ csrf_token() }}"); // CSRF Token
-
-        $.ajax({
-            type: "POST",
-            url: "{{ url('/create-banner') }}",
-            data: formData,
-            processData: false,
-            contentType: false,
-            success: function(response) {
-                $('#addBannerModal').modal('hide');
-                $('#bannerForm')[0].reset();
-                bannerTable.ajax.reload();
-                Swal.fire("Success", response.success, "success");
-            },
-            error: function(xhr) {
-                Swal.fire("Error", xhr.responseJSON.error || "Something went wrong!", "error");
-            }
-        });
-    });
-
-    // ✅ Delete Banner AJAX Request
-    $(document).on('click', '.delete-btn', function() {
-        let id = $(this).data('id');
-
-        Swal.fire({
-            title: "Are you sure?",
-            text: "This will permanently delete the banner.",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonText: "Yes, delete it!",
-        }).then((result) => {
-            if (result.isConfirmed) {
-                $.ajax({
-                    type: "POST",
-                    url: `/delete-banner/${id}`,
-                    data: { _method: "DELETE", _token: "{{ csrf_token() }}" }, // ✅ Fix DELETE method
-                    success: function(response) {
-                        bannerTable.ajax.reload();
-                        Swal.fire("Deleted!", response.success, "success");
-                    },
-                    error: function(xhr) {
-                        Swal.fire("Error", xhr.responseJSON.error || "Something went wrong!", "error");
-                    }
-                });
-            }
-        });
-    });
-});
-</script>
-@endsection
-
-@include('layouts.js')
+             </form>
+              </div>
+              </div>
+    @include('layouts.js')
