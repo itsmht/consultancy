@@ -16,7 +16,7 @@
                             <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
                                 <div class="nav-user-info">
                                     <h5 class="mb-0 text-white nav-user-name">
-                                        {{$admin->admin_name}}</h5>
+                                        {{$admin->admin_phone}}</h5>
                                 </div>
                                 <a class="dropdown-item" href="{{route('logout')}}"><i class="fas fa-power-off mr-2"></i>Logout</a>
                             </div>

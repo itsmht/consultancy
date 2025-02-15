@@ -49,7 +49,9 @@ class AdminController extends Controller
         return redirect()->route('login');
     }
     function dashboard()
-    {   $admin = Admin::where('admin_phone',session()->get('logged'))->first();
+    {   
+        $admin = Admin::where('admin_phone',session()->get('logged'))->first();
         return view('admin.dashboard')->with('admin', $admin);
     }
+    
 }

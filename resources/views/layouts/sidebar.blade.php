@@ -21,45 +21,8 @@
                             <li class="nav-item ">
                                 <a class="nav-link " href="{{route('products')}}"  aria-expanded="false" data-target="#submenu-3" aria-controls="submenu-1"><i class="fas fa-briefcase"></i>Products</a>    
                             </li>
-                            <li class="nav-item ">
-                                <a class="nav-link " href="{{route('users')}}"  data-target="#submenu-4" aria-controls="submenu-1"><i class="fas fa-child"></i>Users</a>    
-                            </li>
-                            <li class="nav-item ">
-                                <a class="nav-link " href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-1"><i class="far fa-money-bill-alt"></i>Payments</a>   
-                                <div id="submenu-5" class="collapse submenu" style="">
-                                    <ul class="nav flex-column">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="{{route('recharges')}}">Pending Recharges</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="{{route('withdraws')}}">Pending Withdraws</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="{{route('wallets')}}">Wallet Verification</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="{{route('transactionHistory')}}">Transaction History</a>
-                                        </li>
-                                    </ul>
-                                </div> 
-                            </li>
+                            
 
-                            <li class="nav-item ">
-                                <a class="nav-link " href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-6" aria-controls="submenu-1"><i class="far fa-money-bill-alt"></i>Tradings</a>   
-                                <div id="submenu-6" class="collapse submenu" style="">
-                                    <ul class="nav flex-column">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="{{route('sells')}}">Pending Sell Requests</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="{{route('buys')}}">Buy History</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="{{route('trades')}}">Trading History</a>
-                                        </li>
-                                    </ul>
-                                </div> 
-                            </li>
                             
                         </ul>
                     </div>
