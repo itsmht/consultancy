@@ -7,6 +7,7 @@ use App\Http\Middleware\PreventBack;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\PartnerController;
+use App\Http\Controllers\PortfolioController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -28,7 +29,10 @@ Route::group(['middleware' => [AuthGuest::class, AuthUser::class, PreventBack::c
     Route::get('getBanners', [BannerController::class, 'getBanners'])->name('getBanners');
     Route::post('createBanner', [BannerController::class, 'createBanner'])->name('createBanner');
     Route::post('/update-banner/{id}', [BannerController::class, 'updateBanner']);
-    Route::delete('/delete-banner/{id}', [BannerController::class, 'deleteBanner']);
     Route::get('/partners', [PartnerController::class, 'partners'])->name('partners');
     Route::post('createPartner', [PartnerController::class, 'createPartner'])->name('createPartner');
+    Route::get('/portfolios', [PortfolioController::class, 'portfolios'])->name('portfolios');
+    Route::post('createPortfolio', [PortfolioController::class, 'createPortfolio'])->name('createPortfolio');
+    Route::get('/portfolioCategories', [PortfolioController::class, 'portfolioCategories'])->name('portfolioCategories');
+    Route::post('createPortfolioCategory', [PortfolioController::class, 'createPortfolioCategory'])->name('createPortfolioCategory');
 });

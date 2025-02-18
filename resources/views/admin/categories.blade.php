@@ -10,27 +10,23 @@
                         <!-- ============================================================== -->
                         <div class="col-xl-12 col-lg-6 col-md-12 col-sm-12 col-12">
                             <div class="card">
-                                <h5 class="card-header">Categories</h5> 
-                                <a href="#" class="btn btn-primary ml-auto" data-toggle="modal" data-target="#exampleModal">Add Category</a>
+                                <h5 class="card-header">Portfolio Categories</h5> 
+                                <a href="#" class="btn btn-primary ml-auto" data-toggle="modal" data-target="#exampleModal">Add Portfolio Category</a>
                                 <div class="card-body">
                                     <table class="table table-hover">
                                         <thead>
                                             <tr>
                                                 <th scope="col">ID</th>
                                                 <th scope="col">Category Name</th>
-                                                <th scope="col">Logo</th>
-                                                <th scope="col">Banner</th>
                                                 <th scope="col">Status</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                         @foreach($categories as $category)
                                             <tr>
-                                                <th scope="row">{{$category->category_id}}</th>
-                                                <td>{{$category->category_name}}</td>
-                                                <td><img style="width:30px; height:30px;" src="{{$category->category_logo}}" alt="company_logo" ></td>
-                                                <td><img style="width:30px; height:30px;" src="{{$category->category_banner}}" alt="Nothing to show" ></td>
-                                                <td>{{$category->category_status}}</td>
+                                                <th scope="row">{{$category->portfolio_category_id}}</th>
+                                                <td>{{$category->title}}</td>
+                                                <td>{{$category->status}}</td>
                                             </tr>
                                         @endforeach
                                         </tbody>
@@ -52,33 +48,17 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Add Category</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Add Portfolio Category</h5>
                             <a href="#" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                             </a>
                         </div>
                         <div class="modal-body">
-                        <form action="{{route('addCategory')}}" method="POST" enctype="multipart/form-data">
+                        <form action="{{route('createPortfolioCategory')}}" method="POST" enctype="multipart/form-data">
                         {{@csrf_field()}}
                     <div class="form-group">
                         <label for="category_name" class="col-form-label">Category Name</label>
-                        <input id="category_name" name="category_name" type="text" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="category_logo" class="col-form-label">Category Logo (Optional)</label>
-                        <div class="custom-file">
-                            <input type="file" name="category_logo" class="custom-file-input" id="category_logo" name="category_file">
-                            <label class="custom-file-label" for="category_logo">Choose File</label>
-                        </div>
-                            <small class="form-text text-muted">Accepted formats are JPG,PNG and JPEG</small>
-                    </div>
-                    <div class="form-group">
-                        <label for="category_banner" class="col-form-label">Category Banner (Optional)</label>
-                        <div class="custom-file">
-                            <input type="file" name="category_banner" class="custom-file-input" id="category_banner" name="category_file">
-                            <label class="custom-file-label" for="category_banner">Choose File</label>
-                        </div>
-                            <small class="form-text text-muted">Accepted formats are JPG,PNG and JPEG</small>
+                        <input id="category_name" name="title" type="text" class="form-control">
                     </div>
                     <div class="modal-footer">
                         <a href="#" class="btn btn-secondary" data-dismiss="modal">Close</a>
