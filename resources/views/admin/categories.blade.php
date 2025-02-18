@@ -22,13 +22,17 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach($categories as $category)
+                                        @forelse($categories as $category)
                                             <tr>
                                                 <th scope="row">{{$category->portfolio_category_id}}</th>
                                                 <td>{{$category->title}}</td>
                                                 <td>{{$category->status}}</td>
                                             </tr>
-                                        @endforeach
+                                            @empty
+                                            <tr>
+                                                <td colspan="3">There are no Portfolio Categories.</td>
+                                            </tr>
+                                        @endforelse
                                         </tbody>
                                     </table>
                                 </div>

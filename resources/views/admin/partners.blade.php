@@ -23,14 +23,18 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach($partners as $partner)
+                                        @forelse($partners as $partner)
                                             <tr>
                                                 <th scope="row">{{$partner->partner_id}}</th>
                                                 <td>{{$partner->title}}</td>
                                                 <td><img style="width:30px; height:30px;" src="{{$partner->image_path}}" alt="img" ></td>
                                                 <td>{{$partner->status}}</td>
                                             </tr>
-                                        @endforeach
+                                            @empty
+                                            <tr>
+                                                <td colspan="3">There are no Partners.</td>
+                                            </tr>
+                                        @endforelse
                                         </tbody>
                                     </table>
                                 </div>

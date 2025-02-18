@@ -25,7 +25,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach($banners as $banner)
+                                        @forelse($banners as $banner)
                                             <tr>
                                                 <th scope="row">{{$banner->banner_id}}</th>
                                                 <td>{{$banner->title}}</td>
@@ -34,7 +34,11 @@
                                                 <td><img style="width:30px; height:30px;" src="{{$banner->video_path}}" alt="vdo" ></td>
                                                 <td>{{$banner->status}}</td>
                                             </tr>
-                                        @endforeach
+                                            @empty
+                                            <tr>
+                                                <td colspan="3">There are no Banners.</td>
+                                            </tr>
+                                        @endforelse
                                         </tbody>
                                     </table>
                                 </div>
