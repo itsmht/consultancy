@@ -21,6 +21,9 @@
                             <li class="nav-item ">
                                 <a class="nav-link " href="{{route('products')}}"  aria-expanded="false" data-target="#submenu-3" aria-controls="submenu-1"><i class="fas fa-briefcase"></i>Products</a>    
                             </li>
+                            <li class="nav-item ">
+                                <a class="nav-link " href="{{route('banners')}}"  aria-expanded="false" data-target="#submenu-3" aria-controls="submenu-1"><i class="fas fa-briefcase"></i>Banners</a>    
+                            </li>
                             
 
                             

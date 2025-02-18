@@ -6,6 +6,7 @@ use App\Http\Middleware\AuthUser;
 use App\Http\Middleware\PreventBack;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BannerController;
+use App\Http\Controllers\PartnerController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -28,4 +29,5 @@ Route::group(['middleware' => [AuthGuest::class, AuthUser::class, PreventBack::c
     Route::post('createBanner', [BannerController::class, 'createBanner'])->name('createBanner');
     Route::post('/update-banner/{id}', [BannerController::class, 'updateBanner']);
     Route::delete('/delete-banner/{id}', [BannerController::class, 'deleteBanner']);
+    Route::get('/partners', [PartnerController::class, 'partners'])->name('partners');
 });
