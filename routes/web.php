@@ -30,4 +30,5 @@ Route::group(['middleware' => [AuthGuest::class, AuthUser::class, PreventBack::c
     Route::post('/update-banner/{id}', [BannerController::class, 'updateBanner']);
     Route::delete('/delete-banner/{id}', [BannerController::class, 'deleteBanner']);
     Route::get('/partners', [PartnerController::class, 'partners'])->name('partners');
+    Route::post('createPartner', [PartnerController::class, 'createPartner'])->name('createPartner');
 });
