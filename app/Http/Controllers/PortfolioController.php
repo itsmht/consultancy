@@ -11,8 +11,9 @@ class PortfolioController extends Controller
     public function portfolios()
     {
         $admin = Admin::where('admin_phone',session()->get('logged'))->first();
-        $portfolios = Partner::all();
-        return view('admin.portfolios')->with('admin', $admin)->with('portfolios', $portfolios);
+        $portfolios = Portfolio::paginate(10);
+        $categories = PortfolioCategory::all();
+        return view('admin.portfolios')->with('admin', $admin)->with('portfolios', $portfolios)->with('categories', $categories);
     }
     public function portfolioCategories()
     {
@@ -26,24 +27,35 @@ class PortfolioController extends Controller
         $admin = Admin::where('admin_phone',session()->get('logged'))->first();
         $req->validate([
             'title' => 'required',
+            'description' => 'required',
             'image_path' => 'required|mimes:jpg,jpeg,png',
+            'portfolio_category_id' => 'required',
         ]);
 
         try {
-            $partner = new Partner();
-            $partner->title = $req->title;
+            $portfolio = new Portfolio();
+            $portfolio->title = $req->title;
             $title_without_space = str_replace(' ', '-', $req->title);
-            $partner->status = "1";
+            $portfolio->description = $req->description;
+            $portfolio->portfolio_category_id = $req->portfolio_category_id;
+            $portfolio->status = "1";
             
             if ($req->hasFile('image_path')) {
-                $url = url('')."/public/partner_images";
+                $url = url('')."/public/portfolio_images";
                 $file = $req->image_path;
                 $file_name1 = $url . "/" . $title_without_space. "-".$admin->admin_phone . "-" . time() ."." . $file->getClientOriginalExtension();
-                $file->move(public_path('partner_images'), $file_name1);
-                $partner->image_path = $file_name1;
+                $file->move(public_path('portfolio_images'), $file_name1);
+                $portfolio->image_path = $file_name1;
             }
-            $partner->save();
-            return back()->with('success', 'New Partner Added');
+            // if ($req->hasFile('video_path')) {
+            //     $url = $req->url()."/public/banner_videos";
+            //     $file = $req->video_path;
+            //     $file_name2 = $url . "/" . $title_without_space. "-".$admin->admin_phone . "-" . time() ."." . $file->getClientOriginalExtension();
+            //     $file->move(public_path('banner_videos'), $file_name2);
+            //     $banner->video_path = $file_name2;
+            // }
+            $portfolio->save();
+            return back()->with('success', 'New Portfolio Added');
         } catch (Exception $e) {
             return back()->with('error', $e->getMessage());
         }
