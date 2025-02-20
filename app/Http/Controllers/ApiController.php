@@ -6,6 +6,7 @@ use App\Models\Portfolio;
 use App\Models\Partner;
 use App\Models\PortfolioCategory;
 use Illuminate\Http\Request;
+use DB;
 
 class ApiController extends Controller
 {
