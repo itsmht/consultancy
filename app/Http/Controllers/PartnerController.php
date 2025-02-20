@@ -29,7 +29,7 @@ class PartnerController extends Controller
             $partner->status = "1";
             
             if ($req->hasFile('image_path')) {
-                $url = url('')."/public/partner_images";
+                $url = url('')."/partner_images";
                 $file = $req->image_path;
                 $file_name1 = $url . "/" . $title_without_space. "-".$admin->admin_phone . "-" . time() ."." . $file->getClientOriginalExtension();
                 $file->move(public_path('partner_images'), $file_name1);

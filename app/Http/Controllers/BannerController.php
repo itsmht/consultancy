@@ -38,14 +38,14 @@ class BannerController extends Controller
             $banner->status = "1";
             
             if ($req->hasFile('image_path')) {
-                $url = url('')."/public/banner_images";
+                $url = url('')."/banner_images";
                 $file = $req->image_path;
                 $file_name1 = $url . "/" . $title_without_space. "-".$admin->admin_phone . "-" . time() ."." . $file->getClientOriginalExtension();
                 $file->move(public_path('banner_images'), $file_name1);
                 $banner->image_path = $file_name1;
             }
             if ($req->hasFile('video_path')) {
-                $url = $req->url()."/public/banner_videos";
+                $url = $req->url()."/banner_videos";
                 $file = $req->video_path;
                 $file_name2 = $url . "/" . $title_without_space. "-".$admin->admin_phone . "-" . time() ."." . $file->getClientOriginalExtension();
                 $file->move(public_path('banner_videos'), $file_name2);

@@ -41,7 +41,7 @@ class PortfolioController extends Controller
             $portfolio->status = "1";
             
             if ($req->hasFile('image_path')) {
-                $url = url('')."/public/portfolio_images";
+                $url = url('')."/portfolio_images";
                 $file = $req->image_path;
                 $file_name1 = $url . "/" . $title_without_space. "-".$admin->admin_phone . "-" . time() ."." . $file->getClientOriginalExtension();
                 $file->move(public_path('portfolio_images'), $file_name1);
