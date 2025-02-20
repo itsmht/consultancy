@@ -11,3 +11,6 @@ Route::get('/user', function (Request $request) {
 
 //Banners
 Route::get('banners', [ApiController::class, 'banners'])->middleware(AuthHeader::class);
+Route::get('partners', [ApiController::class, 'partners'])->middleware(AuthHeader::class);
+Route::get('portfolios', [ApiController::class, 'portfolios'])->middleware(AuthHeader::class);
+Route::get('portfolioCategories', [ApiController::class, 'portfolioCategories'])->middleware(AuthHeader::class);
