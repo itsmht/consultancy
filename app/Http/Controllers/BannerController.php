@@ -27,7 +27,7 @@ class BannerController extends Controller
             'title' => 'required',
             'description' => 'required',
             'image_path' => 'nullable|mimes:jpg,jpeg,png',
-            'video_path' => 'nullable|mimes:mp4,mkv'
+            'video_path' => 'nullable|mimes:mp4,mkv,mov,avi,flv,wmv',
         ]);
 
         try {
@@ -45,7 +45,7 @@ class BannerController extends Controller
                 $banner->image_path = $file_name1;
             }
             if ($req->hasFile('video_path')) {
-                $url = $req->url()."/banner_videos";
+                $url = url('')."/banner_videos";
                 $file = $req->video_path;
                 $file_name2 = $url . "/" . $title_without_space. "-".$admin->admin_phone . "-" . time() ."." . $file->getClientOriginalExtension();
                 $file->move(public_path('banner_videos'), $file_name2);

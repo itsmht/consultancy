@@ -761,7 +761,7 @@ namespace App\Models {
      * @property string $subject
      * @property string $email
      * @property string $name
-     * @property bigint(20) unsigned $contact_form_id
+     * @property mixed $contact_form_id
      * @method static \Illuminate\Database\Eloquent\Builder|ContactForm whereContactFormId($value)
      * @method static \Illuminate\Database\Eloquent\Builder|ContactForm whereName($value)
      * @method static \Illuminate\Database\Eloquent\Builder|ContactForm whereEmail($value)
@@ -1012,7 +1012,7 @@ namespace App\Models {
      * @property string $status
      * @property string $url
      * @property string $title
-     * @property bigint(20) unsigned $link_id
+     * @property mixed $link_id
      * @method static \Illuminate\Database\Eloquent\Builder|Link whereLinkId($value)
      * @method static \Illuminate\Database\Eloquent\Builder|Link whereTitle($value)
      * @method static \Illuminate\Database\Eloquent\Builder|Link whereUrl($value)
@@ -1510,7 +1510,7 @@ namespace App\Models {
      * @property string $description
      * @property string $duration
      * @property string $title
-     * @property bigint(20) unsigned $plan_id
+     * @property mixed $plan_id
      * @method static \Illuminate\Database\Eloquent\Builder|Plan wherePlanId($value)
      * @method static \Illuminate\Database\Eloquent\Builder|Plan whereTitle($value)
      * @method static \Illuminate\Database\Eloquent\Builder|Plan whereDuration($value)
@@ -1757,7 +1757,7 @@ namespace App\Models {
      *
      * @property \Illuminate\Support\Carbon|null $updated_at
      * @property \Illuminate\Support\Carbon|null $created_at
-     * @property bigint(20) unsigned $portfolio_category_id
+     * @property mixed $portfolio_category_id
      * @property string $status
      * @property string $description
      * @property string $image_path
@@ -2011,7 +2011,7 @@ namespace App\Models {
      * @property \Illuminate\Support\Carbon|null $created_at
      * @property string $status
      * @property string $title
-     * @property bigint(20) unsigned $portfolio_category_id
+     * @property mixed $portfolio_category_id
      * @method static \Illuminate\Database\Eloquent\Builder|PortfolioCategory wherePortfolioCategoryId($value)
      * @method static \Illuminate\Database\Eloquent\Builder|PortfolioCategory whereTitle($value)
      * @method static \Illuminate\Database\Eloquent\Builder|PortfolioCategory whereStatus($value)
@@ -2258,7 +2258,7 @@ namespace App\Models {
      * @property string $status
      * @property string $description
      * @property string $title
-     * @property bigint(20) unsigned $service_id
+     * @property mixed $service_id
      * @method static \Illuminate\Database\Eloquent\Builder|Service whereServiceId($value)
      * @method static \Illuminate\Database\Eloquent\Builder|Service whereTitle($value)
      * @method static \Illuminate\Database\Eloquent\Builder|Service whereDescription($value)
@@ -2507,7 +2507,7 @@ namespace App\Models {
      * @property string|null $video_path
      * @property string|null $image_path
      * @property string|null $email
-     * @property int(11)|null $rating
+     * @property mixed $rating
      * @property string|null $company
      * @property string $description
      * @property string|null $designation
@@ -2764,7 +2764,7 @@ namespace App\Models {
      * @property \Illuminate\Support\Carbon|null $updated_at
      * @property \Illuminate\Support\Carbon|null $created_at
      * @property string|null $remember_token
-     * @property hashed $password
+     * @property string $password
      * @property \Illuminate\Support\Carbon|null $email_verified_at
      * @property string $email
      * @property string $name

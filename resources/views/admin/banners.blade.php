@@ -88,7 +88,7 @@
                             <input type="file" name="video_path" class="custom-file-input" id="category_banner" name="category_file">
                             <label class="custom-file-label" for="category_banner">Choose File</label>
                         </div>
-                            <small class="form-text text-muted">Accepted formats are MP4, MKV</small>
+                            <small class="form-text text-muted">Accepted formats are MP4, MKV,MOV, AVI</small>
                     </div>
                     <div class="modal-footer">
                         <a href="#" class="btn btn-secondary" data-dismiss="modal">Close</a>
