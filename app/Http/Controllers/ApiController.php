@@ -22,31 +22,65 @@ class ApiController extends Controller
         }
         
     }
+    // public function portfolios()
+    // {
+    //     $portfolios = DB::table('portfolios as p')
+    //                     ->join('portfolio_categories as pc', 'p.portfolio_category_id', '=', 'pc.portfolio_category_id')
+    //                     ->select('p.portfolio_id', 'p.title', 'p.image_path', 'p.description', 'p.status', 'pc.title as category_title')
+    //                     ->get();
+    //     if($portfolios->isEmpty()){
+    //         return response()->json(['code'=>'404','message'=>'No data found'], 404);
+    //     }
+    //     else
+    //     {
+    //         return response()->json(['code'=>'200','message'=>'Request Successful','data'=>$portfolios], 200);
+    //     }
+    // }
+    // public function portfolioCategories()
+    // {
+    //     $pc = PortfolioCategory::all();
+    //     if($pc->isEmpty()){
+    //         return response()->json(['code'=>'404','message'=>'No data found'], 404);
+    //     }
+    //     else
+    //     {
+    //         return response()->json(['code'=>'200','message'=>'Request Successful','data'=>$pc], 200);
+    //     }
+    // }
     public function portfolios()
-    {
-        $portfolios = DB::table('portfolios as p')
-                        ->join('portfolio_categories as pc', 'p.portfolio_category_id', '=', 'pc.portfolio_category_id')
-                        ->select('p.portfolio_id', 'p.title', 'p.image_path', 'p.description', 'p.status', 'pc.title as category_title')
-                        ->get();
-        if($portfolios->isEmpty()){
-            return response()->json(['code'=>'404','message'=>'No data found'], 404);
-        }
-        else
-        {
-            return response()->json(['code'=>'200','message'=>'Request Successful','data'=>$portfolios], 200);
-        }
+{
+    $portfolios = DB::table('portfolios as p')
+                    ->join('portfolio_categories as pc', 'p.portfolio_category_id', '=', 'pc.portfolio_category_id')
+                    ->select('p.portfolio_id', 'p.title', 'p.image_path', 'p.description', 'p.status', 'pc.portfolio_category_id', 'pc.title as category_title')
+                    ->get();
+
+    if ($portfolios->isEmpty()) {
+        return response()->json(['code' => '404', 'message' => 'No data found'], 404);
     }
-    public function portfolioCategories()
-    {
-        $pc = PortfolioCategory::all();
-        if($pc->isEmpty()){
-            return response()->json(['code'=>'404','message'=>'No data found'], 404);
-        }
-        else
-        {
-            return response()->json(['code'=>'200','message'=>'Request Successful','data'=>$pc], 200);
-        }
-    }
+
+    // Group portfolios by category
+    $categorizedPortfolios = $portfolios->groupBy('portfolio_category_id')->map(function ($items, $categoryId) {
+        return [
+            'category_id' => $categoryId,
+            'category_title' => $items->first()->category_title,
+            'portfolios' => $items->map(function ($item) {
+                return [
+                    'portfolio_id' => $item->portfolio_id,
+                    'title' => $item->title,
+                    'image_path' => $item->image_path,
+                    'description' => $item->description,
+                    'status' => $item->status,
+                ];
+            })->values()
+        ];
+    })->values(); // Reset keys
+
+    return response()->json([
+        'code' => '200',
+        'message' => 'Request Successful',
+        'data' => $categorizedPortfolios
+    ], 200);
+}
     public function partners()
     {
         $partners = Partner::all();
