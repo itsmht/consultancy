@@ -64,37 +64,78 @@
                             </a>
                         </div>
                         <div class="modal-body">
-                        <form action="{{route('createBanner')}}" method="POST" enctype="multipart/form-data">
-                        {{@csrf_field()}}
-                    <div class="form-group">
-                        <label for="category_name" class="col-form-label">Title</label>
-                        <input id="category_name" name="title" type="text" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="category_name" class="col-form-label">Description</label>
-                        <input id="category_name" name="description" type="textbox" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="category_logo" class="col-form-label">Banner Image (Optional)</label>
-                        <div class="custom-file">
-                            <input type="file" name="image_path" class="custom-file-input" id="category_logo" name="category_file">
-                            <label class="custom-file-label" for="category_logo">Choose File</label>
-                        </div>
-                            <small class="form-text text-muted">Accepted formats are JPG,PNG and JPEG</small>
-                    </div>
-                    <div class="form-group">
-                        <label for="category_banner" class="col-form-label">Banner Video (Optional)</label>
-                        <div class="custom-file">
-                            <input type="file" name="video_path" class="custom-file-input" id="category_banner" name="category_file">
-                            <label class="custom-file-label" for="category_banner">Choose File</label>
-                        </div>
-                            <small class="form-text text-muted">Accepted formats are MP4, MKV,MOV, AVI</small>
-                    </div>
-                    <div class="modal-footer">
-                        <a href="#" class="btn btn-secondary" data-dismiss="modal">Close</a>
-                        <button type="submit" class="btn btn-primary ">Save</button>
-                    </div>
-             </form>
+                            <form action="{{route('createBanner')}}" method="POST" enctype="multipart/form-data">
+                                {{@csrf_field()}}
+                                <div class="form-group">
+                                    <label for="category_name" class="col-form-label">Title</label>
+                                    <input id="category_name" name="title" type="text" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="category_description" class="col-form-label">Description</label>
+                                    <input id="category_description" name="description" type="text" class="form-control">
+                                </div>
+                                
+                                <!-- Radio buttons for selecting Image or Video -->
+                                <div class="form-group">
+                                    <label class="col-form-label">Banner Type</label>
+                                    <div >
+                                        <input type="radio" id="imageOption" name="banner_type" value="image" checked> 
+                                        <label class="btn btn-primary" for="imageOption">Image</label>
+                            
+                                        <input type="radio" id="videoOption" name="banner_type" value="video"> 
+                                        <label class="btn btn-primary" for="videoOption">Video</label>
+                                    </div>
+                                </div>
+                            
+                                <!-- Image Upload Field -->
+                                <div class="form-group" id="imageUpload">
+                                    <label for="category_logo" class="col-form-label">Banner Image</label>
+                                    <div class="custom-file">
+                                        <input type="file" name="image_path" class="custom-file-input" id="category_logo">
+                                        <label class="custom-file-label" for="category_logo">Choose File</label>
+                                    </div>
+                                    <small class="form-text text-muted">Accepted formats: JPG, PNG, JPEG</small>
+                                </div>
+                            
+                                <!-- Video Upload Field (Initially Hidden) -->
+                                <div class="form-group" id="videoUpload" style="display: none;">
+                                    <label for="category_banner" class="col-form-label">Banner Video</label>
+                                    <div class="custom-file">
+                                        <input type="file" name="video_path" class="custom-file-input" id="category_banner">
+                                        <label class="custom-file-label" for="category_banner">Choose File</label>
+                                    </div>
+                                    <small class="form-text text-muted">Accepted formats: MP4, MKV, MOV, AVI</small>
+                                </div>
+                            
+                                <div class="modal-footer">
+                                    <a href="#" class="btn btn-secondary" data-dismiss="modal">Close</a>
+                                    <button type="submit" class="btn btn-success">Save</button>
+                                </div>
+                            </form>
               </div>
               </div>
+              <script>
+                document.addEventListener("DOMContentLoaded", function() {
+                    // Get radio buttons and upload fields
+                    const imageOption = document.getElementById("imageOption");
+                    const videoOption = document.getElementById("videoOption");
+                    const imageUpload = document.getElementById("imageUpload");
+                    const videoUpload = document.getElementById("videoUpload");
+            
+                    // Function to toggle visibility
+                    function toggleBannerFields() {
+                        if (imageOption.checked) {
+                            imageUpload.style.display = "block";
+                            videoUpload.style.display = "none";
+                        } else {
+                            imageUpload.style.display = "none";
+                            videoUpload.style.display = "block";
+                        }
+                    }
+            
+                    // Attach event listeners to radio buttons
+                    imageOption.addEventListener("change", toggleBannerFields);
+                    videoOption.addEventListener("change", toggleBannerFields);
+                });
+            </script>
     @include('layouts.js')
