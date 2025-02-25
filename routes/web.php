@@ -8,6 +8,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\PortfolioController;
+use App\Http\Controllers\TeamController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -35,4 +36,6 @@ Route::group(['middleware' => [AuthGuest::class, AuthUser::class, PreventBack::c
     Route::post('createPortfolio', [PortfolioController::class, 'createPortfolio'])->name('createPortfolio');
     Route::get('/portfolioCategories', [PortfolioController::class, 'portfolioCategories'])->name('portfolioCategories');
     Route::post('createPortfolioCategory', [PortfolioController::class, 'createPortfolioCategory'])->name('createPortfolioCategory');
+    Route::get('/teams', [TeamController::class, 'teams'])->name('teams');
+    Route::post('createTeam', [TeamController::class, 'createTeam'])->name('createTeam');
 });

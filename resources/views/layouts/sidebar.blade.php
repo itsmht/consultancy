@@ -18,11 +18,6 @@
                         <div id="submenu-consultancy" class="collapse submenu">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{route('adminDashboard')}}">
-                                        <i class="fa fa-fw fa-user-circle"></i>Dashboard
-                                    </a>
-                                </li>
-                                <li class="nav-item">
                                     <a class="nav-link" href="{{route('banners')}}">
                                         <i class="fas fa-briefcase"></i>Banners
                                     </a>
@@ -30,6 +25,11 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{route('partners')}}">
                                         <i class="fas fa-briefcase"></i>Partners
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{route('teams')}}">
+                                        <i class="fas fa-briefcase"></i>Team Messages
                                     </a>
                                 </li>
                                 <li class="nav-item">

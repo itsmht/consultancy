@@ -2506,20 +2506,12 @@ namespace App\Models {
      * @property string $status
      * @property string|null $video_path
      * @property string|null $image_path
-     * @property string|null $email
-     * @property mixed $rating
-     * @property string|null $company
-     * @property string $description
      * @property string|null $designation
-     * @property string $client_name
-     * @property int $testimonial_id
-     * @method static \Illuminate\Database\Eloquent\Builder|Team whereTestimonialId($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|Team whereClientName($value)
+     * @property string $name
+     * @property int $team_id
+     * @method static \Illuminate\Database\Eloquent\Builder|Team whereTeamId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Team whereName($value)
      * @method static \Illuminate\Database\Eloquent\Builder|Team whereDesignation($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|Team whereDescription($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|Team whereCompany($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|Team whereRating($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|Team whereEmail($value)
      * @method static \Illuminate\Database\Eloquent\Builder|Team whereImagePath($value)
      * @method static \Illuminate\Database\Eloquent\Builder|Team whereVideoPath($value)
      * @method static \Illuminate\Database\Eloquent\Builder|Team whereStatus($value)
