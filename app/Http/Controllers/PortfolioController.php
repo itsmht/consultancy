@@ -70,6 +70,8 @@ class PortfolioController extends Controller
         try {
             $portfolio = new PortfolioCategory();
             $portfolio->title = $req->title;
+            $title_without_space = str_replace(' ', '-', $req->title);
+            $portfolio->slug = $title_without_space;
             $portfolio->status = "1";
             $portfolio->save();
             return back()->with('success', 'New Portfolio Category Added');

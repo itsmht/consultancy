@@ -51,7 +51,7 @@ class ApiController extends Controller
 {
     $portfolios = DB::table('portfolios as p')
                     ->join('portfolio_categories as pc', 'p.portfolio_category_id', '=', 'pc.portfolio_category_id')
-                    ->select('p.portfolio_id', 'p.title', 'p.image_path', 'p.description', 'p.status', 'pc.portfolio_category_id', 'pc.title as category_title')
+                    ->select('p.portfolio_id', 'p.title', 'p.image_path', 'p.description', 'p.status', 'pc.portfolio_category_id', 'pc.title as category_title','pc.slug')
                     ->get();
 
     if ($portfolios->isEmpty()) {
@@ -63,6 +63,7 @@ class ApiController extends Controller
         return [
             'category_id' => $categoryId,
             'category_title' => $items->first()->category_title,
+            'category_slug' => $items->first()->slug,
             'portfolios' => $items->map(function ($item) {
                 return [
                     'portfolio_id' => $item->portfolio_id,
