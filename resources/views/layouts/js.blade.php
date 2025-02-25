@@ -43,6 +43,15 @@
             });
         @endif
     </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch("{{ route('sidebar') }}")
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("sidebar-container").innerHTML = data;
+                });
+        });
+    </script>
 </body>
  
 </html>

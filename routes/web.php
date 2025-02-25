@@ -9,6 +9,7 @@ use App\Http\Controllers\BannerController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\TeamController;
+use App\Http\Controllers\TestimonialController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -38,4 +39,9 @@ Route::group(['middleware' => [AuthGuest::class, AuthUser::class, PreventBack::c
     Route::post('createPortfolioCategory', [PortfolioController::class, 'createPortfolioCategory'])->name('createPortfolioCategory');
     Route::get('/teams', [TeamController::class, 'teams'])->name('teams');
     Route::post('createTeam', [TeamController::class, 'createTeam'])->name('createTeam');
+    Route::get('/testimonials', [TestimonialController::class, 'testimonials'])->name('testimonials');
+    Route::post('createTestimonial', [TestimonialController::class, 'createTestimonial'])->name('createTestimonial');
+    Route::get('/sidebar', function () {
+        return view('layouts.sidebar');
+    })->name('sidebar');
 });

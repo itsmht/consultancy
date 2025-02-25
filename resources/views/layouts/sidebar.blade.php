@@ -33,6 +33,11 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
+                                    <a class="nav-link" href="{{route('testimonials')}}">
+                                        <i class="fas fa-briefcase"></i>Testimonials
+                                    </a>
+                                </li>
+                                <li class="nav-item">
                                     <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-portfolio" aria-controls="submenu-portfolio">
                                         <i class="far fa-money-bill-alt"></i>Portfolio Management
                                     </a>   
