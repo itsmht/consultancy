@@ -14,3 +14,5 @@ Route::get('banners', [ApiController::class, 'banners'])->middleware(AuthHeader:
 Route::get('partners', [ApiController::class, 'partners'])->middleware(AuthHeader::class);
 Route::get('portfolios', [ApiController::class, 'portfolios'])->middleware(AuthHeader::class);
 Route::get('portfolioCategories', [ApiController::class, 'portfolioCategories'])->middleware(AuthHeader::class);
+Route::get('testimonials', [ApiController::class, 'testimonials'])->middleware(AuthHeader::class);
+Route::get('teamMessages', [ApiController::class, 'teamMessages'])->middleware(AuthHeader::class);

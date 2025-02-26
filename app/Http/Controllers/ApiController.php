@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Models\Banner;
 use App\Models\Portfolio;
 use App\Models\Partner;
+use App\Models\Testimonial;
+use App\Models\Team;
 use App\Models\PortfolioCategory;
 use Illuminate\Http\Request;
 use DB;
@@ -91,6 +93,28 @@ class ApiController extends Controller
         else
         {
             return response()->json(['code'=>'200','message'=>'Request Successful','data'=>$partners], 200);
+        }
+    }
+    public function testimonials()
+    {
+        $testimonials = Testimonial::select('testimonial_id','client_name','designation','description','company','rating','video_path','image_path')->get();
+        if($testimonials->isEmpty()){
+            return response()->json(['code'=>'404','message'=>'No data found'], 404);
+        }
+        else
+        {
+            return response()->json(['code'=>'200','message'=>'Request Successful','data'=>$testimonials], 200);
+        }
+    }
+    public function teamMessages()
+    {
+        $team = Team::select('team_id','name','designation','video_path')->get();
+        if($team->isEmpty()){
+            return response()->json(['code'=>'404','message'=>'No data found'], 404);
+        }
+        else
+        {
+            return response()->json(['code'=>'200','message'=>'Request Successful','data'=>$team], 200);
         }
     }
 }
