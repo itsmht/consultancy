@@ -88,6 +88,7 @@
                             <label class="custom-file-label" for="image_path">Choose File</label>
                         </div>
                         <small class="form-text text-muted">Accepted formats: JPG, PNG, JPEG</small>
+                        <small id="selectedImageFileName" class="form-text text-primary"></small>
                     </div>
 
                     <!-- Video Upload Field (Initially Hidden) -->
@@ -98,6 +99,7 @@
                             <label class="custom-file-label" for="video_path">Choose File</label>
                         </div>
                         <small class="form-text text-muted">Accepted formats: MP4, MKV, MOV, AVI</small>
+                        <small id="selectedVideoFileName" class="form-text text-primary"></small>
                     </div>
 
                     <!-- Progress Bar -->
@@ -169,7 +171,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     showConfirmButton: false
                 });
 
-                $("#bannerTable tbody").prepend(`
+                $("#bannerTable tbody").append(`
                     <tr>
                         <td>${response.banner.banner_id}</td>
                         <td>${response.banner.title}</td>
@@ -192,5 +194,38 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 });
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Get the file input elements
+        const videoInput = document.getElementById("video_path");
+        const imageInput = document.getElementById("image_path");
+
+        // Get the display elements for the selected file names
+        const videoFileNameDisplay = document.getElementById("selectedVideoFileName");
+        const imageFileNameDisplay = document.getElementById("selectedImageFileName");
+
+        // Add event listener for video input
+        if (videoInput) {
+            videoInput.addEventListener("change", function () {
+                if (videoInput.files.length > 0) {
+                    videoFileNameDisplay.textContent = "Selected video: " + videoInput.files[0].name;
+                } else {
+                    videoFileNameDisplay.textContent = ""; // Clear if no file is selected
+                }
+            });
+        }
+
+        // Add event listener for image input
+        if (imageInput) {
+            imageInput.addEventListener("change", function () {
+                if (imageInput.files.length > 0) {
+                    imageFileNameDisplay.textContent = "Selected image: " + imageInput.files[0].name;
+                } else {
+                    imageFileNameDisplay.textContent = ""; // Clear if no file is selected
+                }
+            });
+        }
+    });
 </script>
 @include('layouts.js')
