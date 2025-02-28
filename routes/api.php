@@ -16,3 +16,4 @@ Route::get('portfolios', [ApiController::class, 'portfolios'])->middleware(AuthH
 Route::get('portfolioCategories', [ApiController::class, 'portfolioCategories'])->middleware(AuthHeader::class);
 Route::get('testimonials', [ApiController::class, 'testimonials'])->middleware(AuthHeader::class);
 Route::get('teamMessages', [ApiController::class, 'teamMessages'])->middleware(AuthHeader::class);
+Route::post('storeContact', [ApiController::class, 'storeContact'])->middleware(AuthHeader::class);

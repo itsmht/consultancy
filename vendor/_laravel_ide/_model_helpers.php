@@ -753,6 +753,7 @@ namespace App\Models {
     /**
      * App\Models\ContactForm
      *
+     * @property string|null $meeting_time
      * @property \Illuminate\Support\Carbon|null $updated_at
      * @property \Illuminate\Support\Carbon|null $created_at
      * @property string $status
@@ -761,7 +762,7 @@ namespace App\Models {
      * @property string $subject
      * @property string $email
      * @property string $name
-     * @property mixed $contact_form_id
+     * @property int $contact_form_id
      * @method static \Illuminate\Database\Eloquent\Builder|ContactForm whereContactFormId($value)
      * @method static \Illuminate\Database\Eloquent\Builder|ContactForm whereName($value)
      * @method static \Illuminate\Database\Eloquent\Builder|ContactForm whereEmail($value)
@@ -771,6 +772,7 @@ namespace App\Models {
      * @method static \Illuminate\Database\Eloquent\Builder|ContactForm whereStatus($value)
      * @method static \Illuminate\Database\Eloquent\Builder|ContactForm whereCreatedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder|ContactForm whereUpdatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|ContactForm whereMeetingTime($value)
      * @method static \Illuminate\Database\Eloquent\Builder|ContactForm newModelQuery()
      * @method static \Illuminate\Database\Eloquent\Builder|ContactForm newQuery()
      * @method static \Illuminate\Database\Eloquent\Builder|ContactForm query()
@@ -2007,6 +2009,7 @@ namespace App\Models {
     /**
      * App\Models\PortfolioCategory
      *
+     * @property string|null $slug
      * @property \Illuminate\Support\Carbon|null $updated_at
      * @property \Illuminate\Support\Carbon|null $created_at
      * @property string $status
@@ -2017,6 +2020,7 @@ namespace App\Models {
      * @method static \Illuminate\Database\Eloquent\Builder|PortfolioCategory whereStatus($value)
      * @method static \Illuminate\Database\Eloquent\Builder|PortfolioCategory whereCreatedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder|PortfolioCategory whereUpdatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|PortfolioCategory whereSlug($value)
      * @method static \Illuminate\Database\Eloquent\Builder|PortfolioCategory newModelQuery()
      * @method static \Illuminate\Database\Eloquent\Builder|PortfolioCategory newQuery()
      * @method static \Illuminate\Database\Eloquent\Builder|PortfolioCategory query()

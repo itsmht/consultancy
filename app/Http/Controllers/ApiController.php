@@ -6,8 +6,10 @@ use App\Models\Portfolio;
 use App\Models\Partner;
 use App\Models\Testimonial;
 use App\Models\Team;
+use App\Models\ContactForm;
 use App\Models\PortfolioCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use DB;
 
 class ApiController extends Controller
@@ -115,6 +117,54 @@ class ApiController extends Controller
         else
         {
             return response()->json(['code'=>'200','message'=>'Request Successful','data'=>$team], 200);
+        }
+    }
+    public function storeContact(Request $req)
+    {
+        $validator = Validator::make($req->all(),
+            [
+            'name' => "required|max:60|min:3|regex:/^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/",
+            'phone' => "required",
+            'email' => 'required|email',
+            'subject' => 'required',
+            'message' => 'required',
+            'meeting_time' => 'required',
+            ],
+            [
+            'name.required' => 'Name is required',
+            'name.max' => 'Maximum 20 characters allowed',
+            'name.min' => 'Minimum 6 characters allowed',
+            'name.regex' => 'Not a valid name',
+            'phone.required' => 'Phone number is required',
+            'email.required' => 'Email is required',
+            'email.email' => 'Not a valid email',
+            'subject.required' => 'Subject is required',
+            'message.required' => 'Message is required',
+            'meeting_time.required' => 'Meeting time is required',
+            ]);
+        if ($validator->fails())
+        {
+            return response()->json(['code'=>'401','message'=>'Validation error.','data'=>$validator->errors()], 401);
+        }
+        else
+        {
+            try
+            {
+                $contact = new ContactForm();
+                $contact->name = $req->name;
+                $contact->phone = $req->phone;
+                $contact->email = $req->email;
+                $contact->subject = $req->subject;
+                $contact->message = $req->message;
+                $contact->meeting_time = $req->meeting_time;
+                $contact->status = '1';
+                $contact->save();
+                return response()->json(['code'=>'200','message'=>'Contact form submitted successfully'], 200);
+            }
+            catch(\Exception $e)
+            {
+                return response()->json(['code'=>'500','message'=>'Internal server error','data'=>$e->getMessage()], 500);
+            }
         }
     }
 }
