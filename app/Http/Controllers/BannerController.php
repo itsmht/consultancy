@@ -66,7 +66,7 @@ class BannerController extends Controller
             'title' => 'required',
             'description' => 'required',
             'image_path' => 'nullable|mimes:jpg,jpeg,png|max:2048',
-            'video_path' => 'nullable|mimes:mp4,mkv,mov,avi,flv,wmv|max:50000',
+            'video_path' => 'nullable|mimes:mp4,mkv,mov,avi,flv,wmv|max:500000',
         ]);
 
         try {
