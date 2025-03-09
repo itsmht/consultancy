@@ -9,4 +9,4 @@ use App\Console\Commands\SendPendingMails;
     //$this->comment(Inspiring::quote());
 //})->purpose('Display an inspiring quote');
 
-Schedule::command('send:pending-mails')->everyTwoMinutes();
+Schedule::command('send:pending-mails')->everyMinute();
