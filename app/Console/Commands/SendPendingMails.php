@@ -36,7 +36,7 @@ class SendPendingMails extends Command
             Mail::to($contact->email)->send(new ContactFormMail($emailData));
 
             // Send email to the admin
-            Mail::to('iamtalha.mht@gmail.com')->send(new ContactFormMailAdmin($emailData));
+            Mail::to('transformbd.frk@gmail.com')->send(new ContactFormMailAdmin($emailData));
 
             // Update status after sending email
             $contact->status = "2"; // Change status to 2 (sent)
