@@ -11,14 +11,14 @@ class PortfolioController extends Controller
     public function portfolios()
     {
         $admin = Admin::where('admin_phone',session()->get('logged'))->first();
-        $portfolios = Portfolio::paginate(10);
+        $portfolios = Portfolio::where('status', '1')->paginate(10);
         $categories = PortfolioCategory::all();
         return view('admin.portfolios')->with('admin', $admin)->with('portfolios', $portfolios)->with('categories', $categories);
     }
     public function portfolioCategories()
     {
         $admin = Admin::where('admin_phone',session()->get('logged'))->first();
-        $categories = PortfolioCategory::all();
+        $categories = PortfolioCategory::where('status', '1')->get();
         return view('admin.categories')->with('admin', $admin)->with('categories', $categories);
     }
 

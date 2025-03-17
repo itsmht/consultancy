@@ -10,7 +10,7 @@ class TestimonialController extends Controller
     public function testimonials()
     {
         $admin = Admin::where('admin_phone',session()->get('logged'))->first();
-        $testimonials = Testimonial::all();
+        $testimonials = Testimonial::where('status', '1')->get();
         return view('admin.testimonials')->with('admin', $admin)->with('testimonials', $testimonials);
     }
     public function createTestimonial(Request $req)

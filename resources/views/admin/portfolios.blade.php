@@ -21,6 +21,7 @@
                                                 <th scope="col">Description</th>
                                                 <th scope="col">Portfolio Image</th>
                                                 <th scope="col">Status</th>
+                                                <th scope="col">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -31,6 +32,15 @@
                                                 <td>{{$portfolio->description}}</td>
                                                 <td><img style="width:30px; height:30px;" src="{{$portfolio->image_path}}" alt="img" ></td>
                                                 <td>{{$portfolio->status}}</td>
+                                                <td>
+                                                    <form action="{{route('delete')}}" method="POST">
+                                                        {{@csrf_field()}}
+                                                        <input type="hidden" name="id" value="{{$portfolio->portfolio_id}}">
+                                                        <input type="hidden" name="model" value="Portfolio">
+                                                        <input type="hidden" name="primary_key" value="portfolio_id">
+                                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                                    </form>
+                                                </td>
                                             </tr>
                                             @empty
                                             <tr>

@@ -10,7 +10,7 @@ class TeamController extends Controller
     public function teams()
     {
         $admin = Admin::where('admin_phone',session()->get('logged'))->first();
-        $teams = Team::all();
+        $teams = Team::where('status', '1')->get();
         return view('admin.teams')->with('admin', $admin)->with('teams', $teams);
     }
     public function createTeam(Request $req)

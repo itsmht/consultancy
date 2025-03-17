@@ -10,7 +10,7 @@ class BannerController extends Controller
     public function banners()
     {
         $admin = Admin::where('admin_phone',session()->get('logged'))->first();
-        $banners = Banner::all();
+        $banners = Banner::where('status', '1')->get();
         return view('admin.banners2')->with('admin', $admin)->with('banners', $banners);
     }
 

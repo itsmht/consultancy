@@ -10,7 +10,7 @@ class PartnerController extends Controller
     public function partners()
     {
         $admin = Admin::where('admin_phone',session()->get('logged'))->first();
-        $partners = Partner::all();
+        $partners = Partner::where('status', '1')->get();
         return view('admin.partners')->with('admin', $admin)->with('partners', $partners);
     }
 

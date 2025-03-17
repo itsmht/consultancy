@@ -24,6 +24,7 @@
                                                 <th scope="col">Rating</th>
                                                 <th scope="col">Image</th>
                                                 <th scope="col">Status</th>
+                                                <th scope="col">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -41,6 +42,15 @@
                                                 @else
                                                 <td><span class="badge-dot badge-brand mr-1"></span>Inactive</td>
                                                 @endif
+                                                <td>
+                                                    <form action="{{route('delete')}}" method="POST">
+                                                        {{@csrf_field()}}
+                                                        <input type="hidden" name="id" value="{{$testimonial->testimonial_id}}">
+                                                        <input type="hidden" name="model" value="Testimonial">
+                                                        <input type="hidden" name="primary_key" value="testimonial_id">
+                                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                                    </form>
+                                                </td>
                                             </tr>
                                             @empty
                                             <tr>

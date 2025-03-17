@@ -41,6 +41,7 @@ Route::group(['middleware' => [AuthGuest::class, AuthUser::class, PreventBack::c
     Route::post('createTeam', [TeamController::class, 'createTeam'])->name('createTeam');
     Route::get('/testimonials', [TestimonialController::class, 'testimonials'])->name('testimonials');
     Route::post('createTestimonial', [TestimonialController::class, 'createTestimonial'])->name('createTestimonial');
+    Route::post('delete', [AdminController::class, 'delete'])->name('delete');
     Route::get('/sidebar', function () {
         return view('layouts.sidebar');
     })->name('sidebar');

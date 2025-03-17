@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Admin;
+use App\Models\Banner;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -53,5 +54,42 @@ class AdminController extends Controller
         $admin = Admin::where('admin_phone',session()->get('logged'))->first();
         return view('admin.dashboard')->with('admin', $admin);
     }
+    // function delete(Request $req)
+    // {
+    //     dd($req->all()); 
+    //     $id  = $req->id;
+    //     $modelClass = "App\\Models\\" . $req->model;
+    //     $primary_key = $req->primary_key;
+    //     $model = $modelClass::where($primary_key,$id)->first();
+    //     $model->status = "2";
+    //     $model->save();
+    //     return back();
+    // }
+    public function delete(Request $req)
+{
+    $id = $req->id;
+    $primary_key = $req->primary_key;
     
+    // Get the full model class name
+    $modelClass = "App\\Models\\" . $req->model;
+
+    // Ensure the model class exists
+    if (!class_exists($modelClass)) {
+        return back()->with('error', 'Invalid model specified.');
+    }
+
+    // Retrieve the record using the correct primary key
+    $model = $modelClass::where($primary_key, $id)->first();
+
+    // Debugging: Check what query is being executed
+    if (!$model) {
+        return back()->with('error', 'Record not found.');
+    }
+
+    // Update the status
+    $model->status = "2";
+    $model->save();
+
+    return back()->with('success', 'Record deleted successfully.');
+}
 }
